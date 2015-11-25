@@ -1,25 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class MainTurretScript2 : MonoBehaviour {
-	public float detectionRadius, turretRange, fireWait, firingForce;
-	public GameObject[] allTargets;
-	public GameObject target, projectile, projectileSpawn;
-	public Transform thisTransform;
-	public bool canFire;
-	// Use this for initialization
-	void Start () {
-		thisTransform = GetComponent<Transform>();
-		canFire = true;
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		LookAtEnemy();
-		FireAtEnemy();
-	}
+public class BasicTurretScript : MainTurretScript2 {
 
-	public virtual void LookAtEnemy(){
+	public override void LookAtEnemy(){
 		allTargets = GameObject.FindGameObjectsWithTag("Enemy");
 		float closestDist = 1000;
 		foreach (GameObject i in allTargets){
@@ -28,11 +12,11 @@ public class MainTurretScript2 : MonoBehaviour {
 				target = i;
 			}
 		}
-
+		
 		thisTransform.LookAt(new Vector3(target.transform.position.x, transform.position.y, target.transform.position.z));
 	}
-
-	public virtual void FireAtEnemy(){
+	
+	public override void FireAtEnemy(){
 		if (target){
 			if (canFire){
 				if (target.gameObject.tag == "Enemy"){
@@ -44,11 +28,5 @@ public class MainTurretScript2 : MonoBehaviour {
 				}
 			} 
 		}
-	}
-
-	public IEnumerator FireTimer(){
-		canFire = false;
-		yield return new WaitForSeconds(fireWait);
-		canFire = true;
 	}
 }

@@ -12,8 +12,8 @@ public class GUIControl : MonoBehaviour {
 	
 	}
 
-	public void SellTower(){
-		GameObject.FindGameObjectWithTag ("Base").GetComponent <BaseHealth> ().nTowers -= 1;
+	public void UnpowerTower(){
+		GameObject.FindGameObjectWithTag ("Base").GetComponent <BaseHealth>().RemoveFromList (this.gameObject);
 		Destroy (selectedTower);
 	}
 }

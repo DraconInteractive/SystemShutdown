@@ -2,9 +2,9 @@
 using System.Collections;
 
 public class MainTurretScript2 : MonoBehaviour {
-	public float detectionRadius, turretRange, fireWait;
+	public float detectionRadius, turretRange, fireWait, firingForce;
 	public GameObject[] allTargets;
-	public GameObject target;
+	public GameObject target, projectile, projectileSpawn;
 	public Transform thisTransform;
 	public bool canFire;
 	// Use this for initialization
@@ -35,13 +35,19 @@ public class MainTurretScript2 : MonoBehaviour {
 	public void FireAtEnemy(){
 		if (target){
 			if (canFire){
-				RaycastHit hit;
-				if (Physics.Raycast(transform.position, transform.forward, out hit, turretRange)){
-					if (hit.collider.gameObject.tag == "Enemy"){
-						//Damage Enemy;
-						StartCoroutine("FireTimer");
-						Debug.Log ("Enemy Hit");
-					}
+//				RaycastHit hit;
+//				if (Physics.Raycast(transform.position, transform.forward, out hit, turretRange)){
+//					if (hit.collider.gameObject.tag == "Enemy"){
+//						//Damage Enemy;
+//						StartCoroutine("FireTimer");
+//						Debug.Log ("Enemy Hit");
+//					}
+//				}
+
+				if (target.gameObject.tag == "Enemy"){
+					GameObject i = Instantiate(projectile.gameObject, projectileSpawn.transform.position, Quaternion.identity) as GameObject;
+					i.GetComponent<Rigidbody>().AddForce(transform.forward * firingForce, ForceMode.Impulse);
+					StartCoroutine("FireTimer");
 				}
 			} 
 		}

@@ -2,14 +2,14 @@
 using System.Collections;
 
 public class BaseHealth : MonoBehaviour {
+	public int baseHealth;
 
-	// Use this for initialization
+
 	void Start () {
-	
+		baseHealth = 100;
 	}
-	
-	// Update is called once per frame
+
 	void Update () {
-	
+		Debug.Log ("Base = " + baseHealth);
 	}
 }

@@ -5,6 +5,9 @@ public class BasicTurretScript : MainTurretScript2 {
 
 	public override void LookAtEnemy(){
 		allTargets = GameObject.FindGameObjectsWithTag("Enemy");
+		if (allTargets == null){
+			return;
+		}
 		float closestDist = 1000;
 		foreach (GameObject i in allTargets){
 			if (Vector3.Distance(transform.position, i.transform.position) < closestDist){

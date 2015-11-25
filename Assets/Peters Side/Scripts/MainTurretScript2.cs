@@ -21,6 +21,9 @@ public class MainTurretScript2 : MonoBehaviour {
 
 	public virtual void LookAtEnemy(){
 		allTargets = GameObject.FindGameObjectsWithTag("Enemy");
+		if (allTargets == null){
+			return;
+		}
 		float closestDist = 1000;
 		foreach (GameObject i in allTargets){
 			if (Vector3.Distance(transform.position, i.transform.position) < closestDist){
@@ -28,12 +31,12 @@ public class MainTurretScript2 : MonoBehaviour {
 				target = i;
 			}
 		}
-
-		thisTransform.LookAt(new Vector3(target.transform.position.x, transform.position.y, target.transform.position.z));
+		if (target != null)
+			thisTransform.LookAt(new Vector3(target.transform.position.x, transform.position.y, target.transform.position.z));
 	}
 
 	public virtual void FireAtEnemy(){
-		if (target){
+		if (target != null){
 			if (canFire){
 				if (target.gameObject.tag == "Enemy"){
 					if (Vector3.Distance(transform.position, target.transform.position) < turretRange){

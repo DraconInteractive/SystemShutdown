@@ -3,8 +3,12 @@ using System.Collections;
 
 public class AOETurretScript : MainTurretScript2 {
 	public GameObject projectileSpawnTwo, projectileSpawnThree, projectileSpawnFour, projectileSpawnFive, projectileSpawnSix, projectileSpawnSeven, projectileSpawnEight, projectileSpawnNine, projectileSpawnTen, projectileSpawnEleven, projectileSpawnTwelve, projectileSpawnThirteen, projectileSpawnFourteen, projectileSpawnFifteen, projectileSpawnSixteen;
+
 	public override void LookAtEnemy(){
 		allTargets = GameObject.FindGameObjectsWithTag("Enemy");
+		if (allTargets == null){
+			return;
+		}
 		float closestDist = 1000;
 		foreach (GameObject i in allTargets){
 			if (Vector3.Distance(transform.position, i.transform.position) < closestDist){

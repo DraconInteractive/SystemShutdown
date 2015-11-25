@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class GUIControl : MonoBehaviour {
@@ -9,7 +9,9 @@ public class GUIControl : MonoBehaviour {
 	}
 
 	void Update () {
-	
+		if (Input.GetMouseButtonDown(0)){
+			SelectTower();
+		}
 	}
 
 	public void UnpowerTower(){
@@ -29,6 +31,27 @@ public class GUIControl : MonoBehaviour {
 				Camera.main.GetComponent <EnemySpawning> ().nE3 -= 1;
 			}
 			Destroy (i);
+		}
+	}
+
+	public void SelectTower (){
+		RaycastHit hit;
+		Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+		if (Physics.Raycast(ray, out hit, Mathf.Infinity)) {
+			GameObject hitObj = hit.collider.gameObject;
+
+			if (hitObj.tag == "Turret"){
+				hitObj.GetComponent<TowerSelectScript>().SelectTower();
+				selectedTower = hitObj;
+				Debug.Log ("Hit Tower");
+			} else {
+				Debug.Log (hitObj.name);
+			}
+
+			// Do something with the object that was hit by the raycast.
+		} else {
+			Debug.Log ("Nothing Hit");
 		}
 	}
 }

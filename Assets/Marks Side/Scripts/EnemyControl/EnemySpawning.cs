@@ -5,11 +5,13 @@ public class EnemySpawning : MonoBehaviour {
 	public int totalWaveValue, currentWaveValue, nE1, nE2, nE3, eH1, eH2, eH3, eD1, eD2, eD3, rI, rL;
 	public GameObject e1, e2, e3, spawn1, spawn2, spawn3;
 	public Vector3 spawnSelect; 
+	public float timerSec;
 
 	void Start () {
 		//Time.timeScale = 0.1F;
 		totalWaveValue = 30;
 		currentWaveValue = 0;
+		timerSec = 0;
 		nE1 = 0;
 		nE2 = 0;
 		nE3 = 0;
@@ -26,10 +28,15 @@ public class EnemySpawning : MonoBehaviour {
 	void Update () {
 		CheckWorking ();
 		CheckWaveValue ();
-		if (currentWaveValue <= totalWaveValue) {
-			SpawnEnemy ();
-		} else {
-			return;
+		timerSec += Time.deltaTime;
+
+		if (timerSec > 0.5) {
+			timerSec = 0;
+			if (currentWaveValue <= totalWaveValue) {
+				SpawnEnemy ();
+			} else {
+				return;
+			}
 		}
 	}
 

@@ -2,14 +2,18 @@
 using System.Collections;
 
 public class GUIControl : MonoBehaviour {
+	public GameObject selectedTower;
 
-	// Use this for initialization
 	void Start () {
 	
 	}
-	
-	// Update is called once per frame
+
 	void Update () {
 	
+	}
+
+	public void SellTower(){
+		GameObject.FindGameObjectWithTag ("Base").GetComponent <BaseHealth> ().nTowers -= 1;
+		Destroy (selectedTower);
 	}
 }

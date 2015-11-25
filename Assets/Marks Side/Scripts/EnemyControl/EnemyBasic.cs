@@ -5,9 +5,11 @@ public class EnemyBasic : MonoBehaviour {
 	private NavMeshAgent myAgent;
 	private Vector3 baseLocal;
 	public int dmg, health;
+	public Rigidbody rb;
 
 
 	void Start () {
+		rb = GetComponent <Rigidbody> ();
 		myAgent = GetComponent <NavMeshAgent> ();
 		baseLocal = GameObject.FindGameObjectWithTag ("Base").transform.position;
 		myAgent.SetDestination (baseLocal);

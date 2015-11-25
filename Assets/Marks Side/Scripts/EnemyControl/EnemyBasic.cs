@@ -4,7 +4,7 @@ using System.Collections;
 public class EnemyBasic : MonoBehaviour {
 	private NavMeshAgent myAgent;
 	private Vector3 baseLocal;
-	public int dmg, health;
+	public int dmg, health, eType;
 	public Rigidbody rb;
 
 
@@ -40,5 +40,5 @@ public class EnemyBasic : MonoBehaviour {
 	public virtual void ChangeEnemyNumber(){
 
 	}
-	
+
 }

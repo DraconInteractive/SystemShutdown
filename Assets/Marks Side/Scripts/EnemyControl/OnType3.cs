@@ -11,5 +11,6 @@ public class OnType3 : EnemyBasic {
 	public override void SetHealth(){
 		health = 3;
 		dmg = 3;
+		eType = 3;
 	}
 }

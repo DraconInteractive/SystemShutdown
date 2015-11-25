@@ -13,7 +13,7 @@ public class EnemyBasic : MonoBehaviour {
 	}
 
 	void Update () {
-		
+		myAgent.SetDestination (baseLocal);
 	}
 
 	void OnTriggerEnter(Collider other){

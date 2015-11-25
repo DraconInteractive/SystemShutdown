@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class OnType2 : EnemyBasic {
+public class GUIControl : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
@@ -11,9 +11,5 @@ public class OnType2 : EnemyBasic {
 	// Update is called once per frame
 	void Update () {
 	
-	}
-	public override void ChangeEnemyNumber(){
-		Camera.main.GetComponent <EnemySpawning> ().nE2 -= 1;
-		Destroy (gameObject);
 	}
 }

@@ -12,8 +12,6 @@ public class GateStuff : MonoBehaviour {
 	void Update () {
 		if (Input.GetKeyDown (KeyCode.A)) {
 			GetComponent<NavMeshObstacle>().carving = false;
-		} else {
-			GetComponent<NavMeshObstacle>().carving = true;
 		}
 	}
 }

@@ -45,9 +45,11 @@ public class MainTurretScript2 : MonoBehaviour {
 //				}
 
 				if (target.gameObject.tag == "Enemy"){
-					GameObject i = Instantiate(projectile.gameObject, projectileSpawn.transform.position, Quaternion.identity) as GameObject;
-					i.GetComponent<Rigidbody>().AddForce(transform.forward * firingForce, ForceMode.Impulse);
-					StartCoroutine("FireTimer");
+					if (Vector3.Distance(transform.position, target.transform.position) < turretRange){
+						GameObject i = Instantiate(projectile.gameObject, projectileSpawn.transform.position, Quaternion.identity) as GameObject;
+						i.GetComponent<Rigidbody>().AddForce(transform.forward * firingForce, ForceMode.Impulse);
+						StartCoroutine("FireTimer");
+					}
 				}
 			} 
 		}
